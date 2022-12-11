@@ -28,3 +28,9 @@ jobs:
         run: bash <(curl -s https://codecov.io/bash)
       - name: lint
         run: poetry run pylint src
+      - id: files
+        uses: jitterbit/get-changed-files@v1
+      - run: |
+          for changed_file in ${{ steps.files.outputs.all }}; do
+            echo "Do something with this ${changed_file}."
+          done
